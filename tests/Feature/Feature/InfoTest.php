@@ -15,9 +15,10 @@ class InfoTest extends TestCase
             'description' => 'Ipsum'
         ];
 
+        $response = $this->json('POST', '/api/infos', $payload);
 
-        $this->json('POST', '/api/infos', $payload)
-            ->assertStatus(200)
+        $response
+            ->assertStatus(201)
             ->assertJson(['id' => 1, 'name' => 'Lorem', 'email' => 'test@test.test', 'description' => 'Ipsum']);
     }
 
@@ -25,21 +26,20 @@ class InfoTest extends TestCase
     {
         $info = factory(Info::class)->create([
             'name' => 'Lorem test',
-            'email' => 'test1@mail.ru',
+            'email' => 'test1@test.test',
             'description' => 'Ipsum test'
         ]);
 
         $payload = [
+            'id' => $info->id,
             'name' => 'Lorem',
-            'email' => 'test@mail.ru',
+            'email' => 'test2@test.test',
             'description' => 'Ipsum'
         ];
 
-        $assertJson = array_merge(['id' => 1], $payload);
-
         $response = $this->json('PUT', '/api/infos/' . $info->id, $payload)
             ->assertStatus(200)
-            ->assertJson($assertJson);
+            ->assertJson(['id' => 1, 'name' => 'Lorem', 'email' => 'test2@test.test', 'description' => 'Ipsum']);
     }
 
     public function testsInfoAreDeletedCorrectly()

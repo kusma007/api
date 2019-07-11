@@ -25,8 +25,7 @@ class InfoController extends Controller
      */
     public function store(InfoRequest $request)
     {
-        $day = Info::create($request->validated());
-        return $day;
+        return Info::create($request->validated());
     }
 
     /**
@@ -37,7 +36,7 @@ class InfoController extends Controller
      */
     public function show(Info $info)
     {
-        return $game = Info::findOrFail($info);
+        return Info::findOrFail($info);
     }
 
     /**
