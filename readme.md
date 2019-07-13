@@ -1,4 +1,4 @@
-## Rest full API based on Laravel
+## CRUD app API based on Laravel for AngularJS app
 
 1) Download repository with console command - git clone git@github.com:kusma007/api.git
 2) Go to app repository - cd api
