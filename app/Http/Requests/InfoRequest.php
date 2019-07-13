@@ -26,7 +26,7 @@ class InfoRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:infos,email',
+            'email' => 'required|email|max:255|unique:infos,email,'.$this->id,
             'description' => 'required|string',
         ];
 
@@ -37,12 +37,7 @@ class InfoRequest extends FormRequest
             case 'PUT':
                 return [
                     'id' => 'required|integer|exists:infos,id',
-                    'email' => [
-                        'required',
-                        Rule::unique('infos')->ignore($this->email, 'email')
-                    ]
                 ] + $rules;
-            // case 'PATCH':
             case 'DELETE':
                 return [
                     'id' => 'required|integer|exists:infos,id'
