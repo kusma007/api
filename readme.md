@@ -9,4 +9,5 @@
 7) Add access to next folders:
  - storage/logs/
  - storage/framework/cache/data/
+8) start testing - phpunit
 
